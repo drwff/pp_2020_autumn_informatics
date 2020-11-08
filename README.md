@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/allnes/pp_2020_autumn_informatics.svg?branch=master)](https://travis-ci.com/allnes/pp_2020_autumn_informatics)
 ![Build application](https://github.com/allnes/pp_2020_autumn_informatics/workflows/Build%20application/badge.svg?branch=master)
 
-###  09.10.2020: Репозиторий до 18 октября находится в тестовом режиме - могут быть внесены новые изменения и проверки!!!
+### Upd 09.10.2020: Репозиторий до 18 октября находится в тестовом режиме - могут быть внесены новые изменения и проверки!!!
 ### Upd 19.10.2020: Репозиторий на неопределенное время находится в тестовом режиме - могут быть внесены новые изменения и проверки!!! Следите за обновлениями.
 
 # Parallel programming course
