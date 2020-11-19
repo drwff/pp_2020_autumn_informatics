@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.com/allnes/pp_2020_autumn_informatics.svg?branch=master)](https://travis-ci.com/allnes/pp_2020_autumn_informatics)
 ![Build application](https://github.com/allnes/pp_2020_autumn_informatics/workflows/Build%20application/badge.svg?branch=master)
+[![deepcode](https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6ImFsbG5lcyIsInJlcG8xIjoicHBfMjAyMF9hdXR1bW5faW5mb3JtYXRpY3MiLCJpbmNsdWRlTGludCI6ZmFsc2UsImF1dGhvcklkIjoyNDg0MiwiaWF0IjoxNjA1NDU0Mzg0fQ.Yzv_2ZVQHj2ABgRwKna50LHKii_s-XJxZPiLKZIL6r4)](https://www.deepcode.ai/app/gh/allnes/pp_2020_autumn_informatics/_/dashboard?utm_content=gh%2Fallnes%2Fpp_2020_autumn_informatics)
 
 ### Upd 09.10.2020: Репозиторий до 18 октября находится в тестовом режиме - могут быть внесены новые изменения и проверки!!!
 ### Upd 19.10.2020: Репозиторий на неопределенное время находится в тестовом режиме - могут быть внесены новые изменения и проверки!!! Следите за обновлениями.
@@ -117,6 +118,14 @@ Navigate to a source code folder.
 * Go into the newly created folder and begin you work on the report. There must be only 2 files and 1 of them must be written by you:
   - `vector_sum.tex` - a LaTeX report file which consider information about your program, name it in the same way as `<short task name>`.
   - `CMakeLists.txt` - a file to configure your project. Examples for each configuration can be found in `test_tasks/test_latex`.
+* The number of directories will increase with time. To build only your project, you need to do the following:
+  ```
+  cmake --build . --target <name task's directory> --config RELEASE
+  ```
+  Example:
+  ```
+  cmake --build . --target nesterov_a_vector_sum --config RELEASE
+  ```
 * Name your pull request in the following way:
   * for tasks:
   ```
@@ -148,4 +157,4 @@ python2 scripts/lint.py
 
 And finally, 
 
-**All information of the course is in WIKI!!!**
+**All information of the course is in WIKI!!**
