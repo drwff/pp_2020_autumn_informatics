@@ -52,5 +52,3 @@ int MY_Scatter(void* sendBuf, int sendCount,
     }
     return MPI_SUCCESS;
 }
-
-

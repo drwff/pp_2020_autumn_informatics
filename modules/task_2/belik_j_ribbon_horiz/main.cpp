@@ -14,10 +14,11 @@ TEST(Parallel_Operations_MPI, 6x6) {
     int rows = 6;
     int cols = 6;
     std::vector<double> matrix;
+    std::vector<double> tmp_vec;
     if (ProcRank == 0) {
         matrix = Matrix(rows, cols);
+        tmp_vec = Vector(rows);
     }
-    std::vector<double> tmp_vec = Vector(rows);
     std::vector<double> v1 = Get_parallel(matrix, rows, cols, tmp_vec);
     if (ProcRank == 0) {
         std::vector<double> v2 = Get_sequestional(matrix, rows, cols, tmp_vec);
@@ -32,10 +33,11 @@ TEST(Parallel_Operations_MPI, 1x7) {
     int rows = 1;
     int cols = 7;
     std::vector<double> matrix;
+    std::vector<double> tmp_vec;
     if (ProcRank == 0) {
         matrix = Matrix(rows, cols);
+        tmp_vec = Vector(rows);
     }
-    std::vector<double> tmp_vec = Vector(rows);
     std::vector<double> v1 = Get_parallel(matrix, rows, cols, tmp_vec);
     if (ProcRank == 0) {
         std::vector<double> v2 = Get_sequestional(matrix, rows, cols, tmp_vec);
@@ -50,10 +52,11 @@ TEST(Parallel_Operations_MPI, 8x1) {
     int rows = 8;
     int cols = 1;
     std::vector<double> matrix;
+    std::vector<double> tmp_vec;
     if (ProcRank == 0) {
         matrix = Matrix(rows, cols);
+        tmp_vec = Vector(rows);
     }
-    std::vector<double> tmp_vec = Vector(rows);
     std::vector<double> v1 = Get_parallel(matrix, rows, cols, tmp_vec);
     if (ProcRank == 0) {
         std::vector<double> v2 = Get_sequestional(matrix, rows, cols, tmp_vec);
@@ -68,10 +71,11 @@ TEST(Parallel_Operations_MPI, 3x3) {
     int rows = 3;
     int cols = 3;
     std::vector<double> matrix;
+    std::vector<double> tmp_vec;
     if (ProcRank == 0) {
         matrix = Matrix(rows, cols);
+        tmp_vec = Vector(rows);
     }
-    std::vector<double> tmp_vec = Vector(rows);
     std::vector<double> v1 = Get_parallel(matrix, rows, cols, tmp_vec);
     if (ProcRank == 0) {
         std::vector<double> v2 = Get_sequestional(matrix, rows, cols, tmp_vec);
@@ -86,10 +90,11 @@ TEST(Parallel_Operations_MPI, 16x16) {
     int rows = 16;
     int cols = 16;
     std::vector<double> matrix;
+    std::vector<double> tmp_vec;
     if (ProcRank == 0) {
         matrix = Matrix(rows, cols);
+        tmp_vec = Vector(rows);
     }
-    std::vector<double> tmp_vec = Vector(rows);
     std::vector<double> v1 = Get_parallel(matrix, rows, cols, tmp_vec);
     if (ProcRank == 0) {
         std::vector<double> v2 = Get_sequestional(matrix, rows, cols, tmp_vec);

@@ -10,9 +10,6 @@
 std::vector<double> Get_sequestional(std::vector<double> matrix, int rows, int cols, std::vector<double> vect) {
     std::vector<double> vec(cols);
     for (int i = 0; i < cols; i++) {
-        vec[i] = 0;
-    }
-    for (int i = 0; i < cols; i++) {
         vec[i] = skal(i, matrix, rows, vect);
     }
     return vec;
@@ -30,20 +27,24 @@ std::vector<double> Get_parallel(std::vector<double> matrix, int rows, int cols,
     int countint = cols / size;
     int rem = cols % size;
     std::vector<double> locmatrix(countint * rows);
+    std::vector<double> locvec(rows);
     MPI_Status Status;
     if (rank == 0) {
+        for (int i = 0; i < countint * rows; i++) {
+            locmatrix[i] = matrix[i];
+        }
+        for (int i = 0; i < rows; i++) {
+            locvec[i] = vect[i];
+        }
         for (int i = 1; i < size; i++) {
             MPI_Send(matrix.data() + i * countint * rows, countint * rows, MPI_DOUBLE, i, 0, MPI_COMM_WORLD);
+            MPI_Send(locvec.data(), rows, MPI_DOUBLE, i, 1, MPI_COMM_WORLD);
         }
-        for (int i = 0; i < countint * rows; i++)
-            locmatrix[i] = matrix[i];
     } else {
         MPI_Recv(locmatrix.data(), countint * rows, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, &Status);
+        MPI_Recv(locvec.data(), rows, MPI_DOUBLE, 0, 1, MPI_COMM_WORLD, &Status);
     }
-    std::vector<double> mult(rank == 0 ? cols : countint);
-    for (int i = 0; i < countint; i++) {
-        mult[i] = skal(i, locmatrix, rows, vect);
-    }
+    std::vector<double> mult = Get_sequestional(locmatrix, rows, countint, locvec);
     std::vector<double> rmult(cols);
     if (rank == 0) {
         for (int i = 0; i < countint; i++)
@@ -67,7 +68,7 @@ std::vector<double> Matrix(int rows, int cols) {
     gen.seed(static_cast<unsigned int>(time(0)));
     std::vector<double> arr(cols * rows);
     for (int i = 0; i < cols * rows; i++)
-        arr[i] = gen() % 100;
+        arr[i] = gen() % 10;
     return arr;
 }
 std::vector<double> Vector(int n) {
@@ -75,6 +76,6 @@ std::vector<double> Vector(int n) {
     gen.seed(static_cast<unsigned int>(time(0)));
     std::vector<double> vec(n);
     for (int i = 0; i < n; i++)
-        vec[i] = gen() % 100;
+        vec[i] = gen() % 10;
     return vec;
 }

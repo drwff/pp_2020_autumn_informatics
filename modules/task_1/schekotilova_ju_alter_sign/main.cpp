@@ -60,7 +60,7 @@ TEST(Parallel_Operations_MPI, Test_many_elems) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   std::vector<int> vec;
-  const int size_v = 10000000;
+  const int size_v = 100;
   if (rank == 0) vec = getRandomVector(size_v);
   int global = getParallelOperations(vec, size_v);
   if (rank == 0) {

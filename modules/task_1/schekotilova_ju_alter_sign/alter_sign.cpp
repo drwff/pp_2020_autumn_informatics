@@ -29,7 +29,7 @@ int getParallelOperations(std::vector<int> vec, int count_size_vec) {
 
   if (rank == 0) {
     for (int proc = 1; proc < size; proc++) {
-      MPI_Send(&vec[0] + proc * delta, delta, MPI_INT, proc, 0, MPI_COMM_WORLD);
+      MPI_Send(vec.data() + proc * delta, delta, MPI_INT, proc, 0, MPI_COMM_WORLD);
     }
   }
 
@@ -38,8 +38,8 @@ int getParallelOperations(std::vector<int> vec, int count_size_vec) {
   if (rank == 0)  {
     local_v = std::vector<int>(vec.begin(), vec.begin() + delta);
   } else {
-    MPI_Status status;
-    MPI_Recv(&local_v[0], delta, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+    MPI_Status st;
+    MPI_Recv(local_v.data(), delta, MPI_INT, 0, 0, MPI_COMM_WORLD, &st);
   }
   int global = 0;
   int local = getSequentialOperations(local_v, size_v);

@@ -4,11 +4,11 @@
 #include <vector>
 #include "./sents_mpi.h"
 
-TEST(Parallel_MPI, Test_Sentences_Length_0) {
+TEST(Parallel_MPI, Test_Sentences_Length_11) {
     int rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     std::vector<char> global_line;
-    const int size_line = 0;
+    const int size_line = 11;
     if (rank == 0) {
         global_line = getRandomLine(size_line);
     }

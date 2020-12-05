@@ -4,7 +4,7 @@
 #include <vector>
 #include "./sum_elem_row.h"
 
-TEST(Parallel_Operations_MPI, Matrix_test_4x4) {
+TEST(Sum_elem_row_MPI, Matrix_test_4x4) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   const int row = 4, col = 4;
@@ -22,7 +22,7 @@ TEST(Parallel_Operations_MPI, Matrix_test_4x4) {
   }
 }
 
-TEST(Parallel_Operations_MPI, Matrix_test_24x80) {
+TEST(Sum_elem_row_MPI, Matrix_test_24x80) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   const int row = 24, col = 80;
@@ -40,7 +40,7 @@ TEST(Parallel_Operations_MPI, Matrix_test_24x80) {
   }
 }
 
-TEST(Parallel_Operations_MPI, Matrix_test_150x150) {
+TEST(Sum_elem_row_MPI, Matrix_test_150x150) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   const int row = 150, col = 150;
@@ -58,7 +58,7 @@ TEST(Parallel_Operations_MPI, Matrix_test_150x150) {
   }
 }
 
-TEST(Parallel_Operations_MPI, Matrix_test_43x1) {
+TEST(Sum_elem_row_MPI, Matrix_test_43x1) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   const int row = 43, col = 1;
@@ -76,7 +76,7 @@ TEST(Parallel_Operations_MPI, Matrix_test_43x1) {
   }
 }
 
-TEST(Parallel_Operations_MPI, Matrix_test_1x30) {
+TEST(Sum_elem_row_MPI, Matrix_test_1x30) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   const int row = 1, col = 30;

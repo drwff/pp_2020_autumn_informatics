@@ -36,7 +36,7 @@ int getParallelSumSentences(std::vector<char> global_line, int size_line) {
     const int k = size_line - tmp;
     if (rank == 0) {
         for (int process = 1; process < size; process++) {
-            MPI_Send(&global_line[0] + k + process * delta, delta, MPI_CHAR, process, 0, MPI_COMM_WORLD);
+            MPI_Send(global_line.data() + k + process * delta, delta, MPI_CHAR, process, 0, MPI_COMM_WORLD);
         }
     }
     int vec_local_size = 0;
@@ -47,10 +47,10 @@ int getParallelSumSentences(std::vector<char> global_line, int size_line) {
     }
     std::vector<char> local_line(vec_local_size);
     if (rank == 0) {
-        local_line = std::vector<char>(global_line.begin(), global_line.begin() + k + delta);
+        local_line = { global_line.begin(), global_line.begin() + k + delta };
     } else {
         MPI_Status status;
-        MPI_Recv(&local_line[0], delta, MPI_CHAR, 0, 0, MPI_COMM_WORLD, &status);
+        MPI_Recv(local_line.data(), delta, MPI_CHAR, 0, 0, MPI_COMM_WORLD, &status);
     }
     int global_sum_sentences = 0;
     int local_sum_sentences = getSequentialSumSentences(local_line);

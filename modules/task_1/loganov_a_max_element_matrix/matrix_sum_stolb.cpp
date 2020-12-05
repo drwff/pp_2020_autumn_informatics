@@ -6,7 +6,7 @@
 #include <numeric>
 #include <iostream>
 #include <algorithm>
-#include "../../../../modules/task_1/loganov_a_max_element_matrix/matrix_sum_stolb.h"
+#include "../../../../modules/task_1/loganov_a_max_element_matrix/matrix_sumtolb.h"
 
 std::vector<int> getSequentialMaxStolb(std::vector<int>matrixvec, int cols, int rows) {
     std::vector<int> result(cols);
@@ -48,7 +48,7 @@ std::vector<int> getParallelMaxElements(const std::vector<int>& a, int cols, int
     std::vector<int> deltapoc(delta * rows);
     if (rank == 0) {
         for (int j = 1; j < size; ++j) {
-            MPI_Send(&a[0] + ost * rows + j * delta * rows, delta * rows, MPI_INT, j, 0, MPI_COMM_WORLD);
+            MPI_Send(a.data() + ost * rows + j * delta * rows, delta * rows, MPI_INT, j, 0, MPI_COMM_WORLD);
         }
     }
     if (rank == 0) {
@@ -60,19 +60,19 @@ std::vector<int> getParallelMaxElements(const std::vector<int>& a, int cols, int
         }
     } else {
         MPI_Status status;
-        MPI_Recv(&deltapoc[0], delta * rows, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+        MPI_Recv(deltapoc.data(), delta * rows, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
         for (int i = 0; i < delta; i++) {
             for (int j = rows * i; j < rows * i + rows; j++) {
                 local[j - i * rows] = deltapoc[j];
             }
             glmaxsk[i] = getSequentialMax(local);
         }
-        MPI_Send(&glmaxsk[0], delta, MPI_INT, 0, 7, MPI_COMM_WORLD);
+        MPI_Send(glmaxsk.data(), delta, MPI_INT, 0, 7, MPI_COMM_WORLD);
     }
     if (rank == 0) {
         for (int i = 1; i < size; i++) {
             MPI_Status status;
-            MPI_Recv(&glmaxs[i * delta + ost], delta, MPI_INT, i, 7, MPI_COMM_WORLD, &status);
+            MPI_Recv(glmaxs.data() + i * delta + ost, delta, MPI_INT, i, 7, MPI_COMM_WORLD, &status);
         }
     }
     return glmaxs;

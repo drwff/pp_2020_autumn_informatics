@@ -6,7 +6,7 @@
 #include <random>
 #include <ctime>
 #include <numeric>
-#include "./matrix_sum_stolb.h"
+#include "./matrix_sumtolb.h"
 
 TEST(TEST_PARALEL_MPI, TEST1) {
     int rank;

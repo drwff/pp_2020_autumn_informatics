@@ -9,9 +9,12 @@ using Matrix = std::vector<double>;
 
 void printVector(const std::vector<double>& vec, int vecSize);
 void printMatrix(const std::vector<double>& vec, int rows, int cols);
+std::vector<double> sumMatrixByCols(const std::vector<double>& vec, int rows, int cols);
 Matrix createRandomMatrix(int rows, int cols);
+std::vector<double> transpositionMatrix(const std::vector<double>& matrix, int rows, int cols);
 
-void arraysDistribution(int* sendNum, int* sendInd, int n, int procNum, int remain, int cols);
+void arraysDistribution(int* sendNum, int* sendInd, int* sendNumSize, int* sendMatrixInd,
+                        int n, int procNum, int remain, int count);
 std::vector<double> sumMatrixByCols(const std::vector<double>& vec, int rows, int cols);
 
 std::vector<double> multMatrixByVectorSequential(const Matrix& matirx, int rows, int cols,

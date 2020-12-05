@@ -9,6 +9,6 @@
 
 std::vector<int> createRandomMatrix(int rows, int cols);
 std::vector<int> getSequentialOperations(std::vector<int> matrix, int row, int cols);
-std::vector<int> getParallelOperations(std::vector<int> global_matrix, int row, int cols);
+std::vector<int> getParallelOperations(std::vector<int> global_mt, int row, int cols);
 
 #endif  // MODULES_TASK_1_LUDINA_D_SUM_ELEM_ROW_SUM_ELEM_ROW_H_
